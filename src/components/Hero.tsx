@@ -1,109 +1,205 @@
-import React, { useState, useEffect } from 'react';
+import React, { memo, useMemo } from 'react';
 import styles from './Hero.module.css';
+import type { HeroProps } from '../types/hero.types';
+import { useHero } from '../hooks/useHero';
+import { DEFAULT_HERO_CONFIG, mergeHeroConfig } from '../config/hero.config';
+import ErrorBoundary from './ErrorBoundary';
+import LogoWhite from '../assets/LogoWhite.svg';
 
-const Hero: React.FC = () => {
-  const [isVisible, setIsVisible] = useState(false);
+const Hero: React.FC<HeroProps> = memo(({
+  config,
+  className = '',
+  variant = 'default',
+  size = 'md',
+  onButtonClick,
+  onStatClick,
+  enableAnimations = true,
+  enableIntersection = true,
+}) => {
+  const mergedConfig = useMemo(
+    () => mergeHeroConfig(DEFAULT_HERO_CONFIG, config),
+    [config]
+  );
 
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
+  const {
+    isVisible,
+    isInView,
+    handleButtonClick,
+    handleStatClick,
+    heroRef,
+    shouldAnimate,
+  } = useHero(enableAnimations, enableIntersection, onButtonClick, onStatClick);
+
+  const heroClasses = useMemo(() => {
+    const baseClasses = [styles.hero];
+    
+    if (className) baseClasses.push(className);
+    if (variant !== 'default') baseClasses.push(styles[`hero-${variant}`]);
+    if (size !== 'md') baseClasses.push(styles[`hero-${size}`]);
+    if (isInView) baseClasses.push(styles.heroInView);
+    if (shouldAnimate) baseClasses.push(styles.heroAnimated);
+    
+    return baseClasses.join(' ');
+  }, [className, variant, size, isInView, shouldAnimate]);
+
+  const renderBadge = () => (
+    <div className={styles.badge}>
+      <span className={styles.badgeText}>{mergedConfig.badge.text}</span>
+    </div>
+  );
+
+  const renderTitle = () => (
+    <h1 className={styles.title}>
+      <span className={styles.titleLine1}>{mergedConfig.title.line1}</span>
+      <span className={styles.titleLine2}>
+        <span className={styles.titleAccent}>
+          {mergedConfig.title.accent}
+        </span>
+      </span>
+    </h1>
+  );
+
+  const renderButtons = () => (
+    <div className={styles.ctaButtons}>
+      {mergedConfig.buttons.map((button) => (
+        <button
+          key={button.id}
+          className={`${styles[`${button.variant}Button`]} ${
+            button.disabled ? styles.buttonDisabled : ''
+          }`}
+          onClick={() => handleButtonClick(button)}
+          disabled={button.disabled}
+          aria-label={button.text}
+        >
+          <span className={styles.buttonText}>{button.text}</span>
+        </button>
+      ))}
+    </div>
+  );
+
+  const renderStats = () => (
+    <div className={styles.stats}>
+      {mergedConfig.stats.map((stat) => (
+        <div
+          key={stat.id}
+          className={styles.stat}
+          onClick={() => handleStatClick(stat)}
+          role="button"
+          tabIndex={0}
+          onKeyDown={(e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+              handleStatClick(stat);
+            }
+          }}
+          aria-label={`${stat.label}: ${stat.number}`}
+        >
+          <span className={styles.statNumber}>
+            {stat.number}
+            {stat.suffix && <span className={styles.statSuffix}>{stat.suffix}</span>}
+          </span>
+          <span className={styles.statLabel}>{stat.label}</span>
+        </div>
+      ))}
+    </div>
+  );
+
+  const renderVisualElements = () => (
+    <div className={styles.visualContent}>
+      {mergedConfig.visualElements.map((element) => {
+        const elementClasses = [
+          styles[element.type],
+          element.animation ? styles[`${element.type}${element.animation.charAt(0).toUpperCase() + element.animation.slice(1)}`] : '',
+          styles[`${element.type}${element.position.charAt(0).toUpperCase() + element.position.slice(1).replace('-', '')}`],
+        ].filter(Boolean).join(' ');
+
+        return (
+          <div
+            key={element.id}
+            className={elementClasses}
+          >
+            {element.type === 'cube' && (
+              <>
+                <div className={styles.cube}>
+                  {Array.from({ length: 6 }).map((_, i) => (
+                    <div key={i} className={styles.cubeFace}></div>
+                  ))}
+                </div>
+                <div className={styles.cubeGlow}></div>
+              </>
+            )}
+            
+            {element.type === 'dataflow' && (
+              <div className={styles.dataFlow}>
+                {Array.from({ length: 3 }).map((_, i) => (
+                  <div key={i} className={styles.flowLine}></div>
+                ))}
+              </div>
+            )}
+            
+            {element.type === 'grid' && (
+              <div className={styles.gridOverlay}></div>
+            )}
+          </div>
+        );
+      })}
+    </div>
+  );
 
   return (
-    <section id="inicio" className={styles.hero}>
-      <div className={styles.heroContainer}>
-        {/* Background Elements */}
-        <div className={styles.backgroundElements}>
-          <div className={styles.gridOverlay}></div>
-          <div className={styles.floatingShapes}>
-            <div className={styles.shape1}></div>
-            <div className={styles.shape2}></div>
-            <div className={styles.shape3}></div>
+    <ErrorBoundary>
+      <section 
+        ref={heroRef}
+        id="inicio" 
+        className={heroClasses}
+        role="banner"
+        aria-label="Hero section"
+      >
+        <div className={styles.heroContainer}>
+          {/* Background Elements */}
+          <div className={styles.backgroundElements}>
+            {renderVisualElements()}
           </div>
-        </div>
 
-        {/* Main Content */}
-        <div className={`${styles.heroContent} ${isVisible ? styles.visible : ''}`}>
-          {/* Left Side - Text Content */}
-          <div className={styles.textContent}>
-            <div className={styles.badge}>
-              <span className={styles.badgeText}>Red Team Security</span>
+          {/* Main Content */}
+          <div className={`${styles.heroContent} ${isVisible ? styles.visible : ''}`}>
+            {/* Left Side - Text Content */}
+            <div className={styles.textContent}>
+              {renderBadge()}
+              {renderTitle()}
+              
+              <p className={styles.description}>
+                {mergedConfig.description}
+              </p>
+              
+              {renderButtons()}
+              {renderStats()}
             </div>
-            
-            <h1 className={styles.title}>
-              <span className={styles.titleLine1}>Tu socio en</span>
-              <span className={styles.titleLine2}>
-                <span className={styles.titleAccent}>ciberseguridad</span>
-              </span>
-            </h1>
-            
-            <p className={styles.description}>
-              Especialistas en servicios de Pentesting y seguridad informática. 
-              Protegemos tu infraestructura con las mejores prácticas de red team 
-              y análisis de vulnerabilidades.
-            </p>
-            
-            <div className={styles.ctaButtons}>
-              <button className={styles.primaryButton}>
-                <span className={styles.buttonText}>Iniciar Pentest</span>
-              </button>
-              <button className={styles.secondaryButton}>
-                <span className={styles.buttonText}>Ver Servicios</span>
-              </button>
-            </div>
-            
-            <div className={styles.stats}>
-              <div className={styles.stat}>
-                <span className={styles.statNumber}>500+</span>
-                <span className={styles.statLabel}>Pentests Realizados</span>
+
+            {/* Right Side - Visual Elements */}
+            <div className={styles.visualContent}>
+              {/* Wolf Logo */}
+              <div className={styles.wolfLogoContainer}>
+                <img 
+                  src={LogoWhite} 
+                  alt="White Hunters Logo" 
+                  className={styles.wolfLogo}
+                />
+                <div className={styles.logoGlow}></div>
               </div>
-              <div className={styles.stat}>
-                <span className={styles.statNumber}>99.9%</span>
-                <span className={styles.statLabel}>Tasa de Detección</span>
-              </div>
-              <div className={styles.stat}>
-                <span className={styles.statNumber}>24/7</span>
-                <span className={styles.statLabel}>Monitoreo</span>
+              
+              <div className={styles.dataFlow}>
+                {Array.from({ length: 3 }).map((_, i) => (
+                  <div key={i} className={styles.flowLine}></div>
+                ))}
               </div>
             </div>
           </div>
-
-          {/* Right Side - Visual Elements */}
-          <div className={styles.visualContent}>
-            <div className={styles.cyberCube}>
-              <div className={styles.cube}>
-                <div className={styles.cubeFace}></div>
-                <div className={styles.cubeFace}></div>
-                <div className={styles.cubeFace}></div>
-                <div className={styles.cubeFace}></div>
-                <div className={styles.cubeFace}></div>
-                <div className={styles.cubeFace}></div>
-              </div>
-              <div className={styles.cubeGlow}></div>
-            </div>
-            
-            <div className={styles.securityShield}>
-              <div className={styles.shield}>
-                <div className={styles.shieldInner}></div>
-                <div className={styles.shieldPulse}></div>
-              </div>
-            </div>
-            
-            <div className={styles.dataFlow}>
-              <div className={styles.flowLine}></div>
-              <div className={styles.flowLine}></div>
-              <div className={styles.flowLine}></div>
-            </div>
-          </div>
         </div>
-
-        {/* Scroll Indicator */}
-        <div className={styles.scrollIndicator}>
-          <span className={styles.scrollText}>Scroll para descubrir</span>
-          <div className={styles.scrollArrow}></div>
-        </div>
-      </div>
-    </section>
+      </section>
+    </ErrorBoundary>
   );
-};
+});
+
+Hero.displayName = 'Hero';
 
 export default Hero;

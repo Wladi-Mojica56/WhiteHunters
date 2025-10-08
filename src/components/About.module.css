@@ -1,7 +1,6 @@
 /* About Section - Red Team Security */
 .about {
   padding: 6rem 0;
-  background: linear-gradient(135deg, #000 0%, #0a0a0a 50%, #000 100%);
   position: relative;
   overflow: hidden;
 }
@@ -13,9 +12,6 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    radial-gradient(circle at 30% 30%, rgba(220, 38, 38, 0.03) 0%, transparent 50%),
-    radial-gradient(circle at 70% 70%, rgba(239, 68, 68, 0.03) 0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -45,19 +41,15 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(220, 38, 38, 0.1);
-  border: 1px solid rgba(220, 38, 38, 0.3);
+  background: rgba(4, 178, 217, 0.1);
+  border: 1px solid rgba(4, 178, 217, 0.3);
   padding: 0.5rem 1rem;
   border-radius: 25px;
   font-size: 0.9rem;
   font-weight: 500;
-  color: #dc2626;
+  color: var(--blue-bright);
   margin-bottom: 1.5rem;
   animation: slideInUp 0.8s ease-out;
-}
-
-.badgeIcon {
-  font-size: 1rem;
 }
 
 .badgeText {
@@ -70,21 +62,21 @@
   font-weight: 900;
   line-height: 1.1;
   margin-bottom: 1.5rem;
-  color: #ffffff;
+  color: var(--text-primary);
   animation: slideInUp 0.8s ease-out 0.2s both;
 }
 
 .titleAccent {
-  background: linear-gradient(135deg, #dc2626, #ef4444, #f87171);
+  background: linear-gradient(135deg, var(--blue-bright), var(--blue-medium), var(--blue-dark-navy));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0 0 30px rgba(220, 38, 38, 0.3);
+  text-shadow: 0 0 30px rgba(4, 178, 217, 0.3);
 }
 
 .description {
   font-size: 1.25rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   line-height: 1.6;
   max-width: 600px;
   margin: 0 auto;
@@ -93,7 +85,7 @@
 
 /* Team Section */
 .teamSection {
-  margin-bottom: 4rem;
+  margin-bottom: 6rem;
   opacity: 0;
   transform: translateY(50px);
   transition: all 0.8s ease-out 0.2s;
@@ -107,9 +99,22 @@
 .sectionTitle {
   font-size: 2.5rem;
   font-weight: 800;
-  color: #ffffff;
   text-align: center;
   margin-bottom: 3rem;
+  color: var(--text-primary);
+  position: relative;
+}
+
+.sectionTitle::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, var(--blue-bright), var(--blue-medium));
+  border-radius: 2px;
 }
 
 .teamGrid {
@@ -119,15 +124,15 @@
 }
 
 .teamCard {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
   border-radius: 16px;
   padding: 2rem;
   text-align: center;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  backdrop-filter: blur(10px);
   position: relative;
   overflow: hidden;
+  backdrop-filter: blur(10px);
   animation: slideInUp 0.6s ease-out both;
 }
 
@@ -138,7 +143,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(220, 38, 38, 0.05), rgba(239, 68, 68, 0.02));
+  background: linear-gradient(135deg, rgba(4, 178, 217, 0.05), rgba(4, 138, 191, 0.02));
   opacity: 0;
   transition: opacity 0.3s ease;
   border-radius: 16px;
@@ -150,50 +155,47 @@
 
 .teamCard:hover {
   transform: translateY(-8px);
-  border-color: rgba(220, 38, 38, 0.3);
-  box-shadow: 0 20px 40px rgba(220, 38, 38, 0.1);
+  border-color: rgba(4, 178, 217, 0.3);
+  box-shadow: 0 20px 40px rgba(4, 178, 217, 0.1);
 }
 
 .memberAvatar {
   width: 80px;
   height: 80px;
-  background: linear-gradient(135deg, #dc2626, #ef4444);
+  background: linear-gradient(135deg, var(--blue-bright), var(--blue-medium));
   border-radius: 50%;
+  margin: 0 auto 1.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin: 0 auto 1.5rem;
-  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+  font-size: 2rem;
+  color: var(--white);
+  box-shadow: 0 8px 25px rgba(4, 178, 217, 0.3);
   transition: all 0.3s ease;
 }
 
 .teamCard:hover .memberAvatar {
   transform: scale(1.1);
-  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
-}
-
-.avatarIcon {
-  font-size: 2rem;
-  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.3));
+  box-shadow: 0 12px 30px rgba(4, 178, 217, 0.4);
 }
 
 .memberName {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
 }
 
 .memberRole {
   font-size: 1rem;
-  color: #dc2626;
+  color: var(--blue-bright);
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
 
 .memberExperience {
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: var(--text-secondary);
   margin-bottom: 1.5rem;
 }
 
@@ -205,25 +207,25 @@
 }
 
 .specialty {
-  background: rgba(220, 38, 38, 0.1);
-  border: 1px solid rgba(220, 38, 38, 0.2);
-  color: #dc2626;
-  padding: 0.3rem 0.8rem;
-  border-radius: 15px;
-  font-size: 0.8rem;
+  background: rgba(4, 178, 217, 0.1);
+  border: 1px solid rgba(4, 178, 217, 0.2);
+  color: var(--blue-bright);
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
   font-weight: 500;
   transition: all 0.3s ease;
 }
 
 .teamCard:hover .specialty {
-  background: rgba(220, 38, 38, 0.15);
-  border-color: rgba(220, 38, 38, 0.3);
+  background: rgba(4, 178, 217, 0.15);
+  border-color: rgba(4, 178, 217, 0.3);
   transform: translateY(-2px);
 }
 
 /* Certifications Section */
 .certificationsSection {
-  margin-bottom: 4rem;
+  margin-bottom: 6rem;
   opacity: 0;
   transform: translateY(50px);
   transition: all 0.8s ease-out 0.4s;
@@ -241,38 +243,71 @@
 }
 
 .certCard {
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
   border-radius: 12px;
   padding: 1.5rem;
   text-align: center;
   transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
   backdrop-filter: blur(10px);
-  animation: slideInUp 0.4s ease-out both;
+  animation: slideInUp 0.6s ease-out both;
+}
+
+.certCard::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(4, 178, 217, 0.03), rgba(4, 138, 191, 0.01));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 12px;
+}
+
+.certCard:hover::before {
+  opacity: 1;
 }
 
 .certCard:hover {
   transform: translateY(-4px);
-  border-color: rgba(220, 38, 38, 0.3);
-  box-shadow: 0 10px 25px rgba(220, 38, 38, 0.1);
+  border-color: rgba(4, 178, 217, 0.3);
+  box-shadow: 0 10px 25px rgba(4, 178, 217, 0.1);
 }
 
 .certIcon {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  filter: drop-shadow(0 0 10px rgba(220, 38, 38, 0.3));
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, var(--blue-bright), var(--blue-medium));
+  border-radius: 8px;
+  margin: 0 auto 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  color: var(--white);
+  box-shadow: 0 4px 15px rgba(4, 178, 217, 0.3);
+  transition: all 0.3s ease;
+}
+
+.certCard:hover .certIcon {
+  transform: scale(1.1);
+  box-shadow: 0 6px 20px rgba(4, 178, 217, 0.4);
 }
 
 .certName {
   font-size: 1.25rem;
   font-weight: 700;
-  color: #dc2626;
+  color: var(--text-primary);
   margin-bottom: 0.5rem;
 }
 
 .certDescription {
   font-size: 0.9rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   line-height: 1.4;
 }
 
@@ -292,35 +327,60 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 2rem;
-  background: rgba(220, 38, 38, 0.05);
-  border: 1px solid rgba(220, 38, 38, 0.1);
-  border-radius: 20px;
-  padding: 3rem 2rem;
-  backdrop-filter: blur(10px);
 }
 
 .stat {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
+  border-radius: 12px;
+  padding: 2rem;
   text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  animation: slideInUp 0.6s ease-out both;
+}
+
+.stat::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(4, 178, 217, 0.03), rgba(4, 138, 191, 0.01));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 12px;
+}
+
+.stat:hover::before {
+  opacity: 1;
+}
+
+.stat:hover {
+  transform: translateY(-4px);
+  border-color: rgba(4, 178, 217, 0.3);
+  box-shadow: 0 10px 25px rgba(4, 178, 217, 0.1);
 }
 
 .statNumber {
+  display: block;
   font-size: 3rem;
   font-weight: 900;
-  color: #dc2626;
-  line-height: 1;
-  text-shadow: 0 0 20px rgba(220, 38, 38, 0.3);
-  animation: countUp 2s ease-out;
+  color: var(--blue-bright);
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, var(--blue-bright), var(--blue-medium));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .statLabel {
   font-size: 1rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   font-weight: 500;
-  text-align: center;
 }
 
 /* Animations */
@@ -335,25 +395,19 @@
   }
 }
 
-@keyframes countUp {
-  from {
-    opacity: 0;
-    transform: scale(0.5);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
 /* Responsive Design */
 @media (max-width: 1024px) {
-  .title {
-    font-size: 3rem;
-  }
-  
   .teamGrid {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .certificationsGrid {
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  }
+  
+  .title {
+    font-size: 3rem;
   }
 }
 
@@ -366,34 +420,37 @@
     padding: 0 1rem;
   }
   
+  .teamGrid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  .certificationsGrid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
   .title {
     font-size: 2.5rem;
+  }
+  
+  .sectionTitle {
+    font-size: 2rem;
   }
   
   .description {
     font-size: 1.1rem;
   }
   
-  .teamGrid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  
-  .teamCard {
+  .teamCard,
+  .certCard,
+  .stat {
     padding: 1.5rem;
-  }
-  
-  .certificationsGrid {
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  }
-  
-  .statsGrid {
-    grid-template-columns: repeat(2, 1fr);
-    padding: 2rem 1rem;
-  }
-  
-  .statNumber {
-    font-size: 2.5rem;
   }
 }
 
@@ -402,25 +459,31 @@
     font-size: 2rem;
   }
   
-  .teamCard {
+  .sectionTitle {
+    font-size: 1.75rem;
+  }
+  
+  .teamCard,
+  .certCard,
+  .stat {
     padding: 1rem;
   }
   
   .memberAvatar {
     width: 60px;
     height: 60px;
+    font-size: 1.5rem;
   }
   
-  .avatarIcon {
-    font-size: 1.5rem;
+  .memberName {
+    font-size: 1.25rem;
+  }
+  
+  .statNumber {
+    font-size: 2.5rem;
   }
   
   .statsGrid {
     grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-  
-  .statNumber {
-    font-size: 2rem;
   }
 }

@@ -100,7 +100,6 @@ const Contact: React.FC = () => {
                   className={styles.infoCard}
                   style={{ animationDelay: `${index * 0.1}s` }}
                 >
-                  <div className={styles.infoIcon}></div>
                   <h4 className={styles.infoTitle}>{info.title}</h4>
                   <p className={styles.infoValue}>{info.value}</p>
                   <p className={styles.infoDescription}>{info.description}</p>

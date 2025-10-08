@@ -1,11 +1,56 @@
 :root {
+  /* ===== PALETA DE COLORES PRINCIPAL ===== */
+  /* Azules - Paleta Principal */
+  --blue-dark-navy: #033859;      /* Azul marino oscuro */
+  --blue-very-dark: #025373;      /* Azul muy oscuro */
+  --blue-medium: #048ABF;         /* Azul medio vibrante */
+  --blue-bright: #04B2D9;         /* Azul brillante/cyan */
+  
+  /* ===== COLORES COMPLEMENTARIOS ===== */
+  /* Escala de Grises */
+  --gray-900: #0a0a0a;            /* Negro profundo */
+  --gray-800: #1a1a1a;            /* Negro suave */
+  --gray-700: #2d2d2d;            /* Gris muy oscuro */
+  --gray-600: #404040;            /* Gris oscuro */
+  --gray-500: #6b7280;            /* Gris medio */
+  --gray-400: #9ca3af;            /* Gris claro */
+  --gray-300: #d1d5db;            /* Gris muy claro */
+  --gray-200: #e5e7eb;            /* Gris casi blanco */
+  --gray-100: #f3f4f6;            /* Gris blanquecino */
+  --gray-50: #f9fafb;             /* Blanco sucio */
+  
+  /* Blancos y Negros */
+  --white: #ffffff;               /* Blanco puro */
+  --black: #000000;               /* Negro puro */
+  
+  /* ===== COLORES SEMÁNTICOS ===== */
+  /* Estados y Acciones */
+  --success: #10b981;             /* Verde éxito */
+  --warning: #f59e0b;             /* Amarillo advertencia */
+  --error: #ef4444;               /* Rojo error */
+  --info: #3b82f6;                /* Azul información */
+  
+  /* ===== COLORES DE FONDO ===== */
+  --bg-primary: var(--gray-900);   /* Fondo principal */
+  --bg-secondary: var(--gray-800); /* Fondo secundario */
+  --bg-tertiary: var(--gray-700);  /* Fondo terciario */
+  
+  /* ===== COLORES DE TEXTO ===== */
+  --text-primary: var(--white);    /* Texto principal */
+  --text-secondary: var(--gray-300); /* Texto secundario */
+  --text-muted: var(--gray-400);   /* Texto atenuado */
+  
+  /* ===== COLORES DE BORDE ===== */
+  --border-primary: var(--gray-600); /* Borde principal */
+  --border-secondary: var(--gray-500); /* Borde secundario */
+  
+  /* ===== CONFIGURACIÓN BASE ===== */
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
 
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: var(--text-primary);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;

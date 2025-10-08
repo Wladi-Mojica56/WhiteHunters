@@ -1,0 +1,330 @@
+
+/* ToggleMenu Component */
+.toggleMenu {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 2000;
+  transform: translateX(100%);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+}
+
+.toggleMenu.active {
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+/* Overlay */
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.overlayActive {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Menu Content */
+.menuContent {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  max-width: 380px;
+  background: var(--bg-primary);
+  border-left: 1px solid var(--border-primary);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+/* Menu Header */
+.menuHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  border-bottom: 1px solid var(--border-primary);
+  flex-shrink: 0;
+}
+
+.menuTitleContainer {
+  flex: 1;
+}
+
+.menuTitle {
+  color: var(--text-primary);
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.menuSubtitle {
+  color: var(--blue-bright);
+  font-size: 0.75rem;
+  font-weight: 500;
+  margin: 0.25rem 0 0 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.9;
+}
+
+.closeButton {
+  background: transparent;
+  border: 1px solid var(--border-primary);
+  color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+}
+
+.closeButton:hover {
+  background: var(--bg-secondary);
+  border-color: var(--blue-bright);
+  color: var(--blue-bright);
+}
+
+.closeIcon {
+  font-size: 1.25rem;
+  line-height: 1;
+}
+
+/* Navigation */
+.menuNav {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1.5rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+.menuNav::-webkit-scrollbar {
+  width: 6px;
+}
+
+.menuNav::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.menuNav::-webkit-scrollbar-thumb {
+  background: var(--border-primary);
+  border-radius: 3px;
+}
+
+.menuNav::-webkit-scrollbar-thumb:hover {
+  background: var(--blue-bright);
+}
+
+.menuLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  padding: 1rem 1.25rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  position: relative;
+  background: transparent;
+  border: 1px solid transparent;
+}
+
+.menuLink::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 3px;
+  height: 0;
+  background: var(--blue-bright);
+  border-radius: 0 2px 2px 0;
+  transition: height 0.2s ease;
+}
+
+.menuLink:hover {
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+  border-color: var(--border-primary);
+}
+
+.menuLink:hover::before {
+  height: 60%;
+}
+
+.menuLink:hover .linkIcon {
+  transform: translateX(4px);
+  color: var(--blue-bright);
+}
+
+.menuLinkActive {
+  color: var(--text-primary);
+  background: var(--bg-secondary);
+  border-color: var(--blue-bright);
+}
+
+.menuLinkActive::before {
+  height: 60%;
+}
+
+.menuLinkActive .linkIcon {
+  color: var(--blue-bright);
+}
+
+.linkText {
+  flex: 1;
+}
+
+.linkIcon {
+  font-size: 0.875rem;
+  transition: all 0.2s ease;
+  color: var(--text-muted);
+}
+
+/* WhatsApp CTA */
+.menuCta {
+  padding: 1.5rem;
+  border-top: 1px solid var(--border-primary);
+  flex-shrink: 0;
+  background: var(--bg-primary);
+}
+
+.whatsappButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  background: #25D366;
+  color: var(--white);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  border: none;
+  width: 100%;
+}
+
+.whatsappButton:hover {
+  background: #20B358;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+}
+
+.whatsappIcon {
+  font-size: 1.25rem;
+}
+
+.whatsappText {
+  font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .menuContent {
+    max-width: 100%;
+  }
+  
+  .menuHeader {
+    padding: 1.25rem;
+  }
+  
+  .menuTitle {
+    font-size: 1.125rem;
+  }
+  
+  .menuNav {
+    padding: 1.25rem;
+  }
+  
+  .menuCta {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .menuHeader {
+    padding: 1rem;
+  }
+  
+  .menuTitle {
+    font-size: 1rem;
+  }
+  
+  .menuSubtitle {
+    font-size: 0.7rem;
+  }
+  
+  .menuNav {
+    padding: 1rem;
+    gap: 0.375rem;
+  }
+  
+  .menuCta {
+    padding: 1rem;
+  }
+  
+  .menuLink {
+    padding: 0.875rem 1rem;
+    font-size: 0.9375rem;
+  }
+  
+  .whatsappButton {
+    padding: 0.875rem 1.25rem;
+    font-size: 0.9375rem;
+  }
+  
+  .closeButton {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .closeIcon {
+    font-size: 1.125rem;
+  }
+}
+
+/* Animation for menu items */
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.menuLink {
+  animation: slideInRight 0.3s ease-out backwards;
+}
+
+.menuLink:nth-child(1) { animation-delay: 0.05s; }
+.menuLink:nth-child(2) { animation-delay: 0.1s; }
+.menuLink:nth-child(3) { animation-delay: 0.15s; }
+.menuLink:nth-child(4) { animation-delay: 0.2s; }
+.menuLink:nth-child(5) { animation-delay: 0.25s; }

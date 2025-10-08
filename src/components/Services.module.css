@@ -1,7 +1,6 @@
 /* Services Section - Red Team Security */
 .services {
   padding: 6rem 0;
-  background: linear-gradient(135deg, #000 0%, #0a0a0a 50%, #000 100%);
   position: relative;
   overflow: hidden;
 }
@@ -13,9 +12,6 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: 
-    radial-gradient(circle at 20% 20%, rgba(220, 38, 38, 0.05) 0%, transparent 50%),
-    radial-gradient(circle at 80% 80%, rgba(239, 68, 68, 0.05) 0%, transparent 50%);
   pointer-events: none;
 }
 
@@ -45,13 +41,13 @@
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  background: rgba(220, 38, 38, 0.1);
-  border: 1px solid rgba(220, 38, 38, 0.3);
+  background: rgba(4, 178, 217, 0.1);
+  border: 1px solid rgba(4, 178, 217, 0.3);
   padding: 0.5rem 1rem;
   border-radius: 25px;
   font-size: 0.9rem;
   font-weight: 500;
-  color: #dc2626;
+  color: var(--blue-bright);
   margin-bottom: 1.5rem;
   animation: slideInUp 0.8s ease-out;
 }
@@ -70,21 +66,21 @@
   font-weight: 900;
   line-height: 1.1;
   margin-bottom: 1.5rem;
-  color: #ffffff;
+  color: var(--text-primary);
   animation: slideInUp 0.8s ease-out 0.2s both;
 }
 
 .titleAccent {
-  background: linear-gradient(135deg, #dc2626, #ef4444, #f87171);
+  background: linear-gradient(135deg, var(--blue-bright), var(--blue-medium), var(--blue-dark-navy));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-shadow: 0 0 30px rgba(220, 38, 38, 0.3);
+  text-shadow: 0 0 30px rgba(4, 178, 217, 0.3);
 }
 
 .description {
   font-size: 1.25rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   line-height: 1.6;
   max-width: 600px;
   margin: 0 auto;
@@ -109,8 +105,8 @@
 
 .serviceCard {
   position: relative;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-primary);
   border-radius: 16px;
   padding: 2rem;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -126,7 +122,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, rgba(220, 38, 38, 0.05), rgba(239, 68, 68, 0.02));
+  background: linear-gradient(135deg, rgba(4, 178, 217, 0.05), rgba(4, 138, 191, 0.02));
   opacity: 0;
   transition: opacity 0.3s ease;
   border-radius: 16px;
@@ -138,14 +134,14 @@
 
 .serviceCard:hover {
   transform: translateY(-8px);
-  border-color: rgba(220, 38, 38, 0.3);
-  box-shadow: 0 20px 40px rgba(220, 38, 38, 0.1);
+  border-color: rgba(4, 178, 217, 0.3);
+  box-shadow: 0 20px 40px rgba(4, 178, 217, 0.1);
 }
 
 .serviceCard.active {
   transform: translateY(-8px);
-  border-color: rgba(220, 38, 38, 0.5);
-  box-shadow: 0 20px 40px rgba(220, 38, 38, 0.15);
+  border-color: rgba(4, 178, 217, 0.5);
+  box-shadow: 0 20px 40px rgba(4, 178, 217, 0.15);
 }
 
 .cardHeader {
@@ -158,31 +154,31 @@
 .serviceIcon {
   width: 60px;
   height: 60px;
-  background: var(--service-color, #dc2626);
+  background: var(--service-color, var(--blue-bright));
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.5rem;
-  box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3);
+  box-shadow: 0 4px 15px rgba(4, 178, 217, 0.3);
   transition: all 0.3s ease;
 }
 
 .serviceCard:hover .serviceIcon {
   transform: scale(1.1) rotate(5deg);
-  box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4);
+  box-shadow: 0 6px 20px rgba(4, 178, 217, 0.4);
 }
 
 .serviceTitle {
   font-size: 1.5rem;
   font-weight: 700;
-  color: #ffffff;
+  color: var(--text-primary);
   margin: 0;
   line-height: 1.3;
 }
 
 .serviceDescription {
-  color: rgba(255, 255, 255, 0.8);
+  color: var(--text-secondary);
   line-height: 1.6;
   margin-bottom: 1.5rem;
   font-size: 1rem;
@@ -196,9 +192,9 @@
 }
 
 .feature {
-  background: rgba(220, 38, 38, 0.1);
-  border: 1px solid rgba(220, 38, 38, 0.2);
-  color: #dc2626;
+  background: rgba(4, 178, 217, 0.1);
+  border: 1px solid rgba(4, 178, 217, 0.2);
+  color: var(--blue-bright);
   padding: 0.4rem 0.8rem;
   border-radius: 20px;
   font-size: 0.85rem;
@@ -208,8 +204,8 @@
 }
 
 .serviceCard:hover .feature {
-  background: rgba(220, 38, 38, 0.15);
-  border-color: rgba(220, 38, 38, 0.3);
+  background: rgba(4, 178, 217, 0.15);
+  border-color: rgba(4, 178, 217, 0.3);
   transform: translateY(-2px);
 }
 
@@ -223,8 +219,8 @@
   align-items: center;
   gap: 0.5rem;
   background: transparent;
-  border: 1px solid rgba(220, 38, 38, 0.3);
-  color: #dc2626;
+  border: 1px solid rgba(4, 178, 217, 0.3);
+  color: var(--blue-bright);
   padding: 0.6rem 1.2rem;
   border-radius: 8px;
   font-weight: 600;
@@ -242,7 +238,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(220, 38, 38, 0.1), transparent);
+  background: linear-gradient(90deg, transparent, rgba(4, 178, 217, 0.1), transparent);
   transition: left 0.5s ease;
 }
 
@@ -251,8 +247,8 @@
 }
 
 .learnMoreBtn:hover {
-  background: rgba(220, 38, 38, 0.1);
-  border-color: rgba(220, 38, 38, 0.5);
+  background: rgba(4, 178, 217, 0.1);
+  border-color: rgba(4, 178, 217, 0.5);
   transform: translateY(-2px);
 }
 
@@ -270,7 +266,7 @@
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, var(--service-color, #dc2626) 0%, transparent 70%);
+  background: radial-gradient(circle, var(--service-color, var(--blue-bright)) 0%, transparent 70%);
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
