@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
-import { HeroButton, HeroStat } from '../types/hero.types';
+import type { HeroButton, HeroStat } from '../types/hero.types';
 
 export interface UseHeroReturn {
   isVisible: boolean;
@@ -8,7 +8,7 @@ export interface UseHeroReturn {
   handleButtonClick: (button: HeroButton) => void;
   handleStatClick: (stat: HeroStat) => void;
   handleScrollClick: () => void;
-  heroRef: React.RefObject<HTMLElement>;
+  heroRef: React.RefObject<HTMLElement | null>;
   shouldAnimate: boolean;
 }
 
@@ -75,8 +75,8 @@ export const useHero = (
       if (button.disabled) return;
       
       // Analytics tracking
-      if (typeof window !== 'undefined' && window.gtag) {
-        window.gtag('event', 'hero_button_click', {
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'hero_button_click', {
           button_id: button.id,
           button_text: button.text,
         });
@@ -90,8 +90,8 @@ export const useHero = (
   const handleStatClick = useCallback(
     (stat: HeroStat) => {
       // Analytics tracking
-      if (typeof window !== 'undefined' && window.gtag) {
-        window.gtag('event', 'hero_stat_click', {
+      if (typeof window !== 'undefined' && (window as any).gtag) {
+        (window as any).gtag('event', 'hero_stat_click', {
           stat_id: stat.id,
           stat_label: stat.label,
         });

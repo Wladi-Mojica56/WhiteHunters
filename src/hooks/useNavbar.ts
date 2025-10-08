@@ -1,5 +1,5 @@
 import { useState, useCallback, useEffect, useRef } from 'react';
-import { NavLink } from '../types/navbar.types';
+import type { NavLink } from '../types/navbar.types';
 
 export interface UseNavbarReturn {
   isMenuOpen: boolean;
@@ -10,7 +10,7 @@ export interface UseNavbarReturn {
   handleLogoClick: () => void;
   handleLinkClick: (link: NavLink) => void;
   handleWhatsAppClick: () => void;
-  mobileMenuRef: React.RefObject<HTMLDivElement>;
+  mobileMenuRef: React.RefObject<HTMLDivElement | null>;
 }
 
 export const useNavbar = (
@@ -40,8 +40,9 @@ export const useNavbar = (
       const scrollPos = window.scrollY + 100;
 
       sections.forEach((section) => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.offsetHeight;
+        const sectionElement = section as HTMLElement;
+        const sectionTop = sectionElement.offsetTop;
+        const sectionHeight = sectionElement.offsetHeight;
         const sectionId = section.getAttribute('id');
 
         if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
